@@ -9,8 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RealStateApp.Application\RealEstateApp.Application.csproj" />
+    <ProjectReference Include="..\RealStateApp.Infrastructure\RealEstateApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

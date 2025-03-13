@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RealEstateApp.Application.Interfaces.Repositories;
+using RealEstateApp.Application.Mappings;
 using RealEstateApp.Infrastructure.Data;
+using RealEstateApp.Infrastructure.Repositories;
 using System.Runtime.CompilerServices;
 
 namespace RealEstateApp.Infrastructure
@@ -21,6 +24,9 @@ namespace RealEstateApp.Infrastructure
 
 
             //TODO INJECT THE REST OF THE SERVICES AND REPOS
+
+            services.AddScoped<IAgentRepository, AgentRepository>();
+            services.AddAutoMapper(typeof(AgentProfile));
             return services;
         }
     }
