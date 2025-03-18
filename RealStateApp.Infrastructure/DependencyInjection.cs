@@ -27,8 +27,10 @@ namespace RealEstateApp.Infrastructure
 
             services.AddScoped<IAgentRepository, AgentRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddAutoMapper(typeof(AgentProfile));
             services.AddAutoMapper(typeof(AppointmentProfile));
+            services.AddAutoMapper(typeof(ClientProfile));
             return services;
         }
     }

@@ -21,7 +21,7 @@ namespace RealEstateApp.Domain.Entities
 
         // Requests de citas enviadas por el cliente
         public virtual ICollection<Request> Requests { get; set; } = new List<Request>();
-        public virtual ICollection<Conversation> Conversations { get; set; }
+        public virtual ICollection<Conversation> Conversations { get; set; } = new List<Conversation>();
 
         // Citas confirmadas del cliente
         public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateApp.Application.Features.Agents.Commands;
+using RealEstateApp.Application.Features.Agents.Queries;
 
 namespace RealEstate.Api.Controllers
 {
