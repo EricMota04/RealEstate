@@ -7,5 +7,7 @@ namespace RealEstateApp.Application.Interfaces.Repositories
 {
     public interface IMessageRepository : IBaseRepository<Message>
     {
+        Task<IEnumerable<Message>> GetMessagesByConversationAsync(Guid conversationId);
+
     }
 }

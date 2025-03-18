@@ -111,6 +111,7 @@ namespace RealEstateApp.Infrastructure.Repositories
 
                 var agentDtos = _mapper.Map<List<AgentDto>>(agents);
 
+                _logger.LogInformation($"Retrieved {agentDtos.Count} agents");
                 return new PagedResult<AgentDto>(agentDtos, totalAgents, page, pageSize);
             }
             catch (Exception ex)

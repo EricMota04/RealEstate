@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using RealEstateApp.Domain.Entities;
+using RealEstateApp.Application.DTOs.Image;
 
 namespace RealEstateApp.Application.Interfaces.Repositories
 {
@@ -10,5 +7,6 @@ namespace RealEstateApp.Application.Interfaces.Repositories
         IUpdatableRepository<Image>,
         IDeletableRepository<Image>
     {
+        Task<IEnumerable<ImageDto>> GetImagesByPropertyAsync(Guid propertyId);
     }
 }
