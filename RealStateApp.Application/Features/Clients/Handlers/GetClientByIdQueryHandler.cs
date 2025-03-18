@@ -26,7 +26,7 @@ namespace RealEstateApp.Application.Features.Clients.Handlers
         {
             var client = await _clientRepository.FindByIdAsync(request.ClientId);
             if (client == null)
-                return ServiceResult<ClientDto>.Failure("Client not found.");
+                return ServiceResult<ClientDto>.Failure("Client not found.");   
 
             var clientDto = _mapper.Map<ClientDto>(client);
             return ServiceResult<ClientDto>.Success(clientDto);
