@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RealEstateApp.Application.DTOs.Appointment;
+using RealEstateApp.Application.Features.Appointments.Commands;
 using RealEstateApp.Domain.Entities;
 
 namespace RealEstateApp.Application.Mappings
@@ -18,6 +19,7 @@ namespace RealEstateApp.Application.Mappings
                 .ForMember(dest => dest.ClientId, opt => opt.MapFrom(src => src.Client.Id))
                 .ForMember(dest => dest.ClientName, opt => opt.MapFrom(src => src.Client.User.FirstName + " " + src.Client.User.LastName));
 
+            CreateMap<CreateAppointmentCommand, Appointment>();
         }
     }
 }

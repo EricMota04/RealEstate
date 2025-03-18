@@ -2,6 +2,7 @@
 using RealEstate.Shared.Enums.Agent;
 using RealEstateApp.Application.Features.Agents.Commands;
 using RealEstateApp.Application.Interfaces.Repositories;
+using RealEstateApp.Application.Validators.Agent;
 using RealEstateApp.Application.Wrappers;
 using RealEstateApp.Domain.Entities;
 using System;
@@ -25,6 +26,11 @@ namespace RealEstateApp.Application.Features.Agents.Handlers
 
         public async Task<ServiceResult<Guid>> Handle(CreateAgentCommand request, CancellationToken cancellationToken)
         {
+            var agentValidation = new CreateAgentCommandValidator().Validate(request);
+
+            if (!agentValidation.IsValid)
+                return ServiceResult<Guid>.Failure(agentValidation.Errors.Select(e => e.ErrorMessage).ToList());
+
             // Verificar si el usuario existe antes de convertirlo en Agente
             var user = await _userRepository.FindByIdAsync(request.UserId);
             if (user == null)
