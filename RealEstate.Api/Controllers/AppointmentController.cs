@@ -38,7 +38,7 @@ namespace RealEstate.Api.Controllers
             if (page <= 0 || pageSize <= 0) return BadRequest("Page and pageSize must be greater than zero.");
 
             var result = await _mediator.Send(new GetAppointmentsByClientQuery(GetUserId(), page, pageSize));
-            return result.IsSuccess ? Ok(result.Value) : NotFound(result.Errors);
+            return result.IsSuccess ? (result.Value.TotalCount > 0 ? Ok(result.Value) : NoContent()) : BadRequest(result.Errors);
         }
 
         [HttpGet("client/active")]
@@ -48,7 +48,7 @@ namespace RealEstate.Api.Controllers
             if (page <= 0 || pageSize <= 0) return BadRequest("Page and pageSize must be greater than zero.");
 
             var result = await _mediator.Send(new GetActiveAppointmentsByClientQuery(GetUserId(), page, pageSize));
-            return result.IsSuccess ? Ok(result.Value) : NotFound(result.Errors);
+            return result.IsSuccess ? (result.Value.TotalCount > 0 ? Ok(result.Value) : NoContent()) : BadRequest(result.Errors);
         }
 
         [HttpGet("agent")]
@@ -58,7 +58,7 @@ namespace RealEstate.Api.Controllers
             if (page <= 0 || pageSize <= 0) return BadRequest("Page and pageSize must be greater than zero.");
 
             var result = await _mediator.Send(new GetAppointmentsByAgentQuery(GetUserId(), page, pageSize));
-            return result.IsSuccess ? Ok(result.Value) : NotFound(result.Errors);
+            return result.IsSuccess ? (result.Value.TotalCount > 0 ? Ok(result.Value) : NoContent()) : BadRequest(result.Errors);
         }
 
         [HttpPut("cancel/{appointmentId:guid}")]
