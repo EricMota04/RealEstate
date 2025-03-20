@@ -99,7 +99,11 @@ namespace RealEstateApp.Infrastructure.Repositories
         {
             try
             {
-                var appointment = await _context.Appointments.FindAsync(guid);
+                var appointment = await _context.Appointments
+                                            .Include(a => a.Client)
+                                            .Include(a => a.Agent) 
+                                            .FirstOrDefaultAsync(a => a.Id == guid);
+
                 if (appointment != null)
                 {
                     _logger.LogInformation($"Appointment with id {guid} found");

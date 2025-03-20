@@ -6,6 +6,7 @@ namespace RealEstateApp.Application.Features.Appointments.Commands
     public class CompleteAppointmentCommand : IRequest<ServiceResult<bool>>
     {
         public Guid AppointmentId { get; set; }
+        public Guid AgentId { get; set; }
         public CompleteAppointmentCommand(Guid appointmentId)
         {
             AppointmentId = appointmentId;
