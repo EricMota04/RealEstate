@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstateApp.Application.Features.Agents.Commands
+namespace RealEstateApp.Application.Features.Agents.Queries
 {
     public class GetPagedAgentsQuery : IRequest<ServiceResult<PagedResult<AgentDto>>>
     {

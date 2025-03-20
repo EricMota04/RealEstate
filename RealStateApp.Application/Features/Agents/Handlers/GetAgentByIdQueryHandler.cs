@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RealEstateApp.Application.DTOs.Agent;
-using RealEstateApp.Application.Features.Agents.Commands;
+using RealEstateApp.Application.Features.Agents.Queries;
 using RealEstateApp.Application.Interfaces.Repositories;
 using RealEstateApp.Application.Wrappers;
 using System;

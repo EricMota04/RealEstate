@@ -2,7 +2,6 @@
 using MediatR;
 using RealEstateApp.Application.DTOs.Agent;
 using RealEstateApp.Application.DTOs;
-using RealEstateApp.Application.Features.Agents.Commands;
 using RealEstateApp.Application.Interfaces.Repositories;
 using RealEstateApp.Application.Wrappers;
 using System;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RealEstateApp.Application.Features.Agents.Queries;
 
 namespace RealEstateApp.Application.Features.Agents.Handlers
 {
