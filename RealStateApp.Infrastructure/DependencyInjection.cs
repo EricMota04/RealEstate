@@ -1,10 +1,14 @@
 ﻿using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Identity.Web;
 using RealEstateApp.Application.Interfaces.Repositories;
 using RealEstateApp.Application.Mappings;
 using RealEstateApp.Infrastructure.Data;
+using RealEstateApp.Infrastructure.Identity;
 using RealEstateApp.Infrastructure.Repositories;
 using System.Runtime.CompilerServices;
 
@@ -23,17 +27,35 @@ namespace RealEstateApp.Infrastructure
                         errorNumbersToAdd: null);
                 }));
 
-
             services.AddSingleton(new BlobServiceClient(configuration["AzureBlobStorage:ConnectionString"]));
             //TODO INJECT THE REST OF THE SERVICES AND REPOS
 
             services.AddScoped<IAgentRepository, AgentRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
-            services.AddAutoMapper(typeof(AgentProfile));
-            services.AddAutoMapper(typeof(AppointmentProfile));
-            services.AddAutoMapper(typeof(ClientProfile));
+            services.AddAutoMapper(typeof(AgentProfile).Assembly);
             return services;
         }
+
+        public static IServiceCollection AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddMicrosoftIdentityWebApi(jwtOptions =>
+                {
+                    configuration.Bind("AzureAdB2C", jwtOptions);
+                    jwtOptions.TokenValidationParameters.NameClaimType = "name";
+                    jwtOptions.TokenValidationParameters.RoleClaimType = "extension_UserRole"; // This line is KEY
+                }, options =>
+                {
+                    configuration.Bind("AzureAdB2C", options);
+                });
+
+            // Map the custom role claim to standard .NET role
+            services.AddTransient<IClaimsTransformation, B2CCustomRoleMapper>();
+
+            return services;
+        }
+
+
     }
 }
