@@ -4,9 +4,9 @@ namespace RealEstateApp.Application.Interfaces.Repositories
 {
     public interface IImageRepository : 
         IBaseRepository<Image>,
-        IUpdatableRepository<Image>,
         IDeletableRepository<Image>
     {
-        Task<IEnumerable<ImageDto>> GetImagesByPropertyAsync(Guid propertyId);
+        Task AddImagesAsync(IEnumerable<Image> images);
+        Task<IEnumerable<Image>> GetImagesByPropertyAsync(Guid propertyId);
     }
 }

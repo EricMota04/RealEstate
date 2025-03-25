@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure.Storage.Blobs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RealEstateApp.Application.Interfaces.Repositories;
@@ -23,6 +24,7 @@ namespace RealEstateApp.Infrastructure
                 }));
 
 
+            services.AddSingleton(new BlobServiceClient(configuration["AzureBlobStorage:ConnectionString"]));
             //TODO INJECT THE REST OF THE SERVICES AND REPOS
 
             services.AddScoped<IAgentRepository, AgentRepository>();

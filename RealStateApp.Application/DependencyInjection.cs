@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace RealEstateApp.Application
 {
@@ -7,6 +8,7 @@ namespace RealEstateApp.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(RealEstateApp.Application.AssemblyReference).Assembly));
+            services.AddValidatorsFromAssembly(typeof(RealEstateApp.Application.AssemblyReference).Assembly);
             return services;
         }
     }
