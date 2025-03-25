@@ -58,6 +58,7 @@ namespace RealEstateApp.Domain.Entities
         // Relación Muchos a Muchos con Mejoras
         public virtual ICollection<PropertyImprovement> PropertyImprovements { get; set; } = new List<PropertyImprovement>();
 
+        public virtual ICollection<Conversation> Conversations { get; set; } = new List<Conversation>(); // Relación con Conversaciones
         // Relación con Imágenes
         public virtual ICollection<Image> Images { get; set; } = new List<Image>();
     }
