@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateApp.Application.Features.Agents.Commands;
+using RealEstateApp.Application.Features.Clients.Commands;
 using RealEstateApp.Application.Features.Clients.Queries;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace RealEstate.Api.Controllers
         /// <param name="value"></param>
         [HttpPost]
         [Authorize(Roles = "Admin")] 
-        public async Task<IActionResult> CreateAgent(Guid id, [FromBody] CreateAgentCommand command, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateClient(Guid id, [FromBody] CreateClientCommand command, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(command, cancellationToken);
             return result.IsSuccess ? CreatedAtAction(nameof(GetClientById), new { id = result.Value }, result.Value) : BadRequest(result.Errors);

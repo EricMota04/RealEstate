@@ -83,7 +83,7 @@ namespace RealEstateApp.Infrastructure.Repositories
                     .Include(c => c.User)
                     .AsQueryable();
 
-                int totalAgents = await query.CountAsync();
+                int totalClients = await query.CountAsync();
 
                 var clients = await query
                     .Skip((page - 1) * pageSize)
@@ -92,7 +92,7 @@ namespace RealEstateApp.Infrastructure.Repositories
 
                 var clientsDto = _mapper.Map<List<ClientDto>>(clients);
 
-                return new PagedResult<ClientDto>(clientsDto, totalAgents, page, pageSize);
+                return new PagedResult<ClientDto>(clientsDto, totalClients, page, pageSize);
             }
             catch (Exception ex)
             {

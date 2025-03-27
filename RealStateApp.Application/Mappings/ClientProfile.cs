@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using RealEstateApp.Application.DTOs.Client;
+using RealEstateApp.Application.Features.Clients.Commands;
 using RealEstateApp.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstateApp.Application.Mappings
 {
@@ -19,6 +15,7 @@ namespace RealEstateApp.Application.Mappings
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
                 .ForMember(dest => dest.ProfilePictureUrl, opt => opt.MapFrom(src => src.User.ProfilePictureUrl));
 
+            CreateMap<CreateClientCommand, Client>();
         }
     }
 }

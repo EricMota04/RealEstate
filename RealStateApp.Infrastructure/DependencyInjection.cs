@@ -25,12 +25,19 @@ namespace RealEstateApp.Infrastructure
 
             //TODO INJECT THE REST OF THE SERVICES AND REPOS
 
+            // Repositories
             services.AddScoped<IAgentRepository, AgentRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // Mappings
             services.AddAutoMapper(typeof(AgentProfile));
             services.AddAutoMapper(typeof(AppointmentProfile));
             services.AddAutoMapper(typeof(ClientProfile));
+            services.AddAutoMapper(typeof(UserProfile));
+
+
             return services;
         }
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using RealEstate.Shared.Enums;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RealEstateApp.Domain.Entities
 {
