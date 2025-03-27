@@ -16,6 +16,9 @@ namespace RealEstateApp.Domain.Entities
 
         public Guid AgentId { get; set; }
         public virtual Agent Agent { get; set; }
+        public Guid PropertyId { get; set; }
+        public virtual Property Property { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public virtual ICollection<Message> Messages { get; set; } = new List<Message>();
     }

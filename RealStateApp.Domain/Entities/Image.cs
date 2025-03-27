@@ -12,5 +12,5 @@ public class Image
 
     [Required]
     [StringLength(500)]
-    public string Url { get; set; }
+    public string BlobName { get; set; }
 }

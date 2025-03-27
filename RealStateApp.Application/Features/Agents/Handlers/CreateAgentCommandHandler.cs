@@ -26,11 +26,6 @@ namespace RealEstateApp.Application.Features.Agents.Handlers
 
         public async Task<ServiceResult<Guid>> Handle(CreateAgentCommand request, CancellationToken cancellationToken)
         {
-            var agentValidation = new CreateAgentCommandValidator().Validate(request);
-
-            if (!agentValidation.IsValid)
-                return ServiceResult<Guid>.Failure(agentValidation.Errors.Select(e => e.ErrorMessage).ToList());
-
             // Verificar si el usuario existe antes de convertirlo en Agente
             var user = await _userRepository.FindByIdAsync(request.UserId);
             if (user == null)

@@ -42,6 +42,7 @@ namespace RealEstateApp.Infrastructure.Data
             builder.ApplyConfiguration(new RequestConfiguration());
             builder.ApplyConfiguration(new SaleTypeConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new ConversationConfiguration());
 
         }
     }
